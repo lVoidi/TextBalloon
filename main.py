@@ -3,13 +3,11 @@ This file can be imported. Just run text_balloon_on(path_of_your_image, above=Tr
 """
 
 from PIL import Image
-from typing import List
 import os
 import sys
 
-text_balloon = Image.open("tb.png")
 def text_balloon_on(path: str, index: int = 0) -> Image.Image:
-    global text_balloon
+    text_balloon = Image.open("tb.png")
     image = Image.open(path)
     text_balloon = text_balloon.resize((image.width, image.height//2))
     image.paste(text_balloon, (0, 0), text_balloon)
@@ -17,7 +15,6 @@ def text_balloon_on(path: str, index: int = 0) -> Image.Image:
     return image
 
 if __name__ == "__main__":
-    print("Lol text balloon")
     args = sys.argv[1:]
     for arg_index, arg_name in enumerate(args):
         if os.path.isdir(arg_name):
